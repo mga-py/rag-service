@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  # -----------------------------------------------------------------
+  # Servicio: Reranker Externo (SentenceTransformers)
+  # -----------------------------------------------------------------
+  reranker_service:
+    build:
+      context: .  # Directorio que contiene el Dockerfile
+      dockerfile: Dockerfile
+    container_name: reranker_service
+    ports:
+      # Mapea el puerto 8000 del host al 8000 del contenedor
+      - "8000:8000"
+    environment:
+      # --- Configuración del Servicio ---
+      - API_KEY=1234567890
+      - RERANK_MODEL=BAAI/bge-reranker-large # Modelo principal
+      # - RERANK_MODEL=BAAI/bge-reranker-base # (Alternativa más ligera)
+      - MODEL_MAX_LENGTH=1024
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
