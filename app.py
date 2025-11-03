@@ -26,8 +26,8 @@ logger.info("Iniciando servidor de reclasificación...")
 model_name = os.getenv("RERANK_MODEL", "BAAI/bge-reranker-large")
 model_max_length = int(os.getenv("MODEL_MAX_LENGTH", "512"))
 API_KEY = os.getenv("API_KEY", None)
-# --- NUEVO: Timeout de inactividad en segundos (ej. 1 minutos) ---
-IDLE_TIMEOUT = int(os.getenv("IDLE_TIMEOUT", "60"))
+# --- NUEVO: Timeout de inactividad en segundos (ej. 10 minutos) ---
+IDLE_TIMEOUT = int(os.getenv("IDLE_TIMEOUT", "600"))
 
 if API_KEY:
     logger.info("Protección con clave API HABILITADA.")
