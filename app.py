@@ -34,7 +34,6 @@ if API_KEY:
 else:
     logger.warning("Protección con clave API DESHABILITADA (Servidor abierto).")
 
-
 # --- 3. NUEVO: Gestor del Modelo (ModelManager) ---
 
 class ModelManager:
